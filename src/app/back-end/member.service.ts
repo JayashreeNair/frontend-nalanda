@@ -2,19 +2,21 @@ import {Injectable} from '@angular/core';
 import {MemberModule} from '../member/member.module';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-class Members {
-}
+import {Credentials, Member} from '../model/Member';
 
 @Injectable({
-  providedIn: MemberModule
+  providedIn: 'root'
 })
 export class MemberService {
 
   constructor(private http: HttpClient) {
   }
 
-  getMembers(): Observable<Members> {
-    return this.http.get<Members>('');
+  getMembers(): Observable<Array<Member>> {
+    return this.http.get<Array<Member>>('/api/admin/get-members');
+  }
+
+  authenticate(credentials: Credentials) {
+    return this.http.post('/login', credentials);
   }
 }

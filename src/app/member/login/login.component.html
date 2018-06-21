@@ -1,0 +1,15 @@
+<app-card>
+  <form [formGroup]="loginForm">
+    <div class="login-form-container">
+      <div class="row">
+        UserId   : <input id='login-form-email' formControlName="userId">
+      </div>
+      <div class="row">
+        Password: <input id='login-form-password' formControlName="password">
+      </div>
+      <div>
+        <button id='login-form-submit' type="submit" name="submit" [disabled]="loginForm.status=='INVALID'" (click)="submitForm()">Submit</button>
+      </div>
+    </div>
+  </form>
+</app-card>

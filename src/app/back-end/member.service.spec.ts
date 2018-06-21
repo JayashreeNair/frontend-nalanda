@@ -1,19 +1,21 @@
 import {TestBed} from '@angular/core/testing';
 
 import {MemberService} from './member.service';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {Credentials} from '../model/Member';
 
 fdescribe('MemberService', () => {
-  let httpClientSpy: { get: jasmine.Spy };
+  let httpTestingController: HttpTestingController;
   let service: MemberService;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [MemberService]
     }).compileComponents();
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new MemberService(httpClientSpy);
-
+    service = TestBed.get(MemberService);
+    httpTestingController = TestBed.get(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -21,8 +23,26 @@ fdescribe('MemberService', () => {
   });
 
   it('should call out to backend to retrieve all members', () => {
+    const members = [{}, {}];
     service.getMembers().subscribe();
-    expect(httpClientSpy.get.calls.count()).toBe(1);
+    const req = httpTestingController.expectOne('/api/admin/get-members');
+    expect(req.request.method).toBe('GET');
+    req.flush(members);
+  });
+
+  it('should call out to backend to authenticate and get a JWT Token', function () {
+    const credentials = new Credentials();
+    credentials.userId = 'userId';
+    credentials.password = 'password';
+
+    service.authenticate(credentials).subscribe();
+    const req = httpTestingController.expectOne('/login');
+
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toBe(credentials);
+    req.flush(credentials);
 
   });
+
+
 });
