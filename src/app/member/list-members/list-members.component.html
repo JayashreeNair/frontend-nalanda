@@ -1,3 +1,27 @@
 <app-card>
-    <p> What ? </p>
+  <div class="list-members-container">
+    <div class="list-members-add">
+      <p> Right? </p>
+    </div>
+    <div>
+      <table id="list-members-table">
+        <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let d of data">
+          <td>
+            {{d.firstName}}
+          </td>
+          <td>
+            {{d.lastName}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
 </app-card>

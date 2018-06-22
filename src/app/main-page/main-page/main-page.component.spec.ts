@@ -9,7 +9,8 @@ describe('MainPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MainPageModule]
+      imports: [MainPageModule],
+
     })
       .compileComponents();
   }));
@@ -23,4 +24,5 @@ describe('MainPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

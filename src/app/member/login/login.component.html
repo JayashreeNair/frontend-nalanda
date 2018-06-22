@@ -1,5 +1,5 @@
 <app-card>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
     <div class="login-form-container">
       <div class="row">
         UserId   : <input id='login-form-email' formControlName="userId">
@@ -8,7 +8,7 @@
         Password: <input id='login-form-password' formControlName="password">
       </div>
       <div>
-        <button id='login-form-submit' type="submit" name="submit" [disabled]="loginForm.status=='INVALID'" (click)="submitForm()">Submit</button>
+        <button id='login-form-submit' type="submit" name="submit" [disabled]="loginForm.status=='INVALID'">Submit</button>
       </div>
     </div>
   </form>

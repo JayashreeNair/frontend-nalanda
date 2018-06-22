@@ -4,7 +4,7 @@ import {MemberService} from './member.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {Credentials} from '../model/Member';
 
-fdescribe('MemberService', () => {
+describe('MemberService', () => {
   let httpTestingController: HttpTestingController;
   let service: MemberService;
 
@@ -25,7 +25,7 @@ fdescribe('MemberService', () => {
   it('should call out to backend to retrieve all members', () => {
     const members = [{}, {}];
     service.getMembers().subscribe();
-    const req = httpTestingController.expectOne('/api/admin/get-members');
+    const req = httpTestingController.expectOne('http://localhost:8080/api/admin/get-members');
     expect(req.request.method).toBe('GET');
     req.flush(members);
   });
@@ -36,7 +36,7 @@ fdescribe('MemberService', () => {
     credentials.password = 'password';
 
     service.authenticate(credentials).subscribe();
-    const req = httpTestingController.expectOne('/login');
+    const req = httpTestingController.expectOne('http://localhost:8080/auth/login');
 
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toBe(credentials);

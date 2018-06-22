@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     credentials.userId = this.loginForm.get('userId').value;
     credentials.password = this.loginForm.get('password').value;
 
-    this.memberService.authenticate(credentials);
+    this.memberService.authenticate(credentials).subscribe();
 
   }
 }

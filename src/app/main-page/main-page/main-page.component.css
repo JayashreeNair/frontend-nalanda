@@ -6,9 +6,9 @@
 
 .header {
   display: flex;
-  background-color: #33CEFF;
+  background-color: #4CAF50;
   color: white;
-  line-height: 200px;
+  line-height: 150px;
   justify-content: center;
 }
 
@@ -22,8 +22,8 @@
 
 .footer {
   display: flex;
-  background-color: #33CEFF;
+  background-color: #4CAF50;
   color: white;
-  line-height: 100px;
+  height: 50px;
   justify-content: center;
 }

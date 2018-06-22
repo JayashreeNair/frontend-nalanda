@@ -1,0 +1,35 @@
+.list-members-container{
+  display:flex;
+  padding: 20px;
+  width: 500px;
+  flex-direction: column;
+}
+
+.list-members-add{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#list-members-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#list-members-table td, #list-members-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#list-members-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#list-members-table tr:hover {background-color: #ddd;}
+
+#list-members-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}

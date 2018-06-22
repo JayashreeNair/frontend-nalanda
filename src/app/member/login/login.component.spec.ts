@@ -8,12 +8,14 @@ import {By} from '@angular/platform-browser';
 import {createStub} from '../../utilities/create-stub';
 import {MemberService} from '../../back-end/member.service';
 import {Credentials} from '../../model/Member';
+import {Subject} from "rxjs/internal/Subject";
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let element: DebugElement;
   const memberServiceStub = createStub(MemberService);
+  const authenticatedSubject = new Subject<Response>();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,7 +28,7 @@ fdescribe('LoginComponent', () => {
   }));
 
   beforeEach(() => {
-    spyOn(memberServiceStub, 'authenticate');
+    spyOn(memberServiceStub, 'authenticate').and.returnValue(authenticatedSubject);
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -38,21 +40,10 @@ fdescribe('LoginComponent', () => {
   });
 
   it('should call memberservice authenticate method', function () {
-    const email = element.query(By.css('#login-form-email')).nativeElement;
-    email.value = 'someEmail';
-    email.dispatchEvent(new Event('input'));
+    component.loginForm.get('userId').setValue('someEmail');
+    component.loginForm.get('password').setValue('somePwd');
 
-    const pwd = element.query(By.css('#login-form-password')).nativeElement;
-    pwd.value = 'somePwd';
-    pwd.dispatchEvent(new Event('input'));
-
-    fixture.detectChanges();
-
-    const submit = element.query(By.css('#login-form-submit')).nativeElement;
-    submit.dispatchEvent(new Event('submit'));
-    fixture.detectChanges();
-
-
+    component.submitForm();
     const credentials = new Credentials();
     credentials.userId = 'someEmail';
     credentials.password = 'somePwd';

@@ -13,10 +13,10 @@ export class MemberService {
   }
 
   getMembers(): Observable<Array<Member>> {
-    return this.http.get<Array<Member>>('/api/admin/get-members');
+    return this.http.get<Array<Member>>('http://localhost:8080/api/admin/get-members');
   }
 
   authenticate(credentials: Credentials) {
-    return this.http.post('/login', credentials);
+    return this.http.post('http://localhost:8080/auth/login', credentials);
   }
 }
