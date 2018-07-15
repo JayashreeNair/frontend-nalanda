@@ -29,20 +29,4 @@ describe('MemberService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(members);
   });
-
-  it('should call out to backend to authenticate and get a JWT Token', function () {
-    const credentials = new Credentials();
-    credentials.userId = 'userId';
-    credentials.password = 'password';
-
-    service.authenticate(credentials).subscribe();
-    const req = httpTestingController.expectOne('http://localhost:8080/auth/login');
-
-    expect(req.request.method).toBe('POST');
-    expect(req.request.body).toBe(credentials);
-    req.flush(credentials);
-
-  });
-
-
 });

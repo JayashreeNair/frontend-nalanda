@@ -1,0 +1,16 @@
+  <mat-card class="card1">
+    <mat-card-header>
+      <mat-card-title><h1>Add Member</h1></mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <div>
+        First Name : <input type="text" [(ngModel)]="member.firstName">
+      </div>
+      <div>
+        Last Name:<input type="text" [(ngModel)]="member.lastName">
+      </div>
+      <button mat-raised-button (click)="add()">Add</button>
+    </mat-card-content>
+  </mat-card>
+

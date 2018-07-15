@@ -1,7 +1,7 @@
 <app-card>
   <div class="list-members-container">
     <div class="list-members-add">
-      <p> Right? </p>
+      <button (click)="openDialog()">Add Member </button>
     </div>
     <div>
       <table id="list-members-table">
@@ -10,7 +10,7 @@
         <th>Last Name</th>
         </thead>
         <tbody>
-        <tr *ngFor="let d of data">
+        <tr *ngFor="let d of data" id="row"+{{index}}>
           <td>
             {{d.firstName}}
           </td>
